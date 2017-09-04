@@ -287,7 +287,7 @@ binary.show()
 ![png](./output_images/output_23_0.png)
 
 
-### Fit
+### Fit
 
 It finds the lines by:
 
