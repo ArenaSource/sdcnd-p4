@@ -27,7 +27,7 @@ class Camera(object):
 
     # Define conversions in x and y from pixels space to meters
     m2py = 30 / 720  # meters per pixel in y dimension
-    m2px = 3.7 / 700  # meters per pixel in x dimension
+    m2px = 3.7 / 880  # meters per pixel in x dimension
 
     def __init__(self, name='default'):
         self.name = name
@@ -180,8 +180,8 @@ class Image(object):
     def pipeline(self):
         return (self.S.threshold(170, 255) | self.S.sobel(vertical=(20, 100), kernel=9)).warp()
 
-    def peaks(self, range=0.5):
-        histogram = np.sum(self.pixels[self.shape[0] // 2:, :], axis=0)
+    def peaks(self, ratio=0.5):
+        histogram = np.sum(self.pixels[int(self.shape[0] * ratio):, :], axis=0)
 
         midpoint = np.int(histogram.shape[0] / 2)
         left = np.argmax(histogram[:midpoint])
@@ -343,7 +343,7 @@ class Image(object):
 class Line(object):
     def __init__(self, finder):
         self.finder = finder
-        self._fits = collections.deque([], 24)
+        self._fits = collections.deque([], 12)
 
     @property
     def fit(self):
@@ -407,7 +407,7 @@ class LaneFinder(object):
 
     @property
     def position(self):
-        return self.left.position + self.right.position
+        return -(self.left.position + self.right.position) / 2.
 
     @property
     def curvature(self):

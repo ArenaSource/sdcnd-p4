@@ -341,8 +341,8 @@ print("Right line curvature {}m\nRight line distance to vehicle: {}m".format(
     finder.right.curvature, finder.right.position))
 ```
 
-    Right line curvature 553.0m
-    Right line distance to vehicle: 2.52m
+    Right line curvature 696.0m
+    Right line distance to vehicle: 2.01m
 
 
 ##### LaneFinder and Line classes
@@ -443,3 +443,31 @@ HTML("""
 
 
 [Video download](https://github.com/ArenaSource/sdcnd-p4/raw/master/output_video/project_video.mp4)
+
+
+```python
+
+```
+
+
+## Discussion
+
+### Current limitations
+
+- Problem tracking lines when the lighting conditions change.
+- Use of approximations on pixel to meter conversions.
+- Slow, needs a speed up more than 10x for real time processing.
+
+### Possible improvements
+
+- Dynamic thresholding: Based on the previous measurements.
+- Different filters for white/yellow lanes.
+- Line sanity checks:
+    - Similar curvature
+    - Separation
+    - Parallel
+
+
+```python
+
+```
